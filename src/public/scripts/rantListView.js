@@ -18,6 +18,7 @@ var RantView = Backbone.View.extend({
     this.model.on('change', this.render, this);
     this.$el.on('click', function(evt) {
       if (evt.target.matches('.js-delete')) {
+        evt.preventDefault();
         this.onDelete(evt);
       }
     }.bind(this));
@@ -29,9 +30,10 @@ var RantView = Backbone.View.extend({
   },
 
   onDelete: function() {
+    var self = this;
     setTimeout(function() {
-      this.model.destroy();
-      this.remove();
+      self.model.destroy();
+      self.remove();
     });
   }
 
